@@ -5,6 +5,7 @@ int main() {
 	while (choose != '0') {
 
 		do {
+			cout<<"1.随从牌库"<<endl;
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);
