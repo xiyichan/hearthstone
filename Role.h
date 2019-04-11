@@ -21,12 +21,9 @@ private :
 	
 
 public:
-	vector<Follower *> RoleCard;//角色手牌随从,上限十个
-	vector<Follower *> RoleCardLibrary;//角色牌库随从，上限30
-	vector<Follower *> RoleThrowCardLibrary;//角色弃牌牌库，上限30
-	list<Follower *> RoleFollwer;//当前场上随从，上限7个					
+				
 								
-								//Role();
+	//Role();
 	Role(int RoleID,string RoleName,int RoleHealth,int RoleAttack,int RoleStatusl,enum Profession RoleProfession);
 	//~Role();
 

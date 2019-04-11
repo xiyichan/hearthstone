@@ -1,4 +1,2 @@
-2	kaze	2	2	1
-3	luss	5	5	4
-4	wuo	4	3	1
-2	kaze	2	2	1
+7	fadsf	3	3	2
+9	dew	4	4	2

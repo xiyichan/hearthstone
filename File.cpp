@@ -6,22 +6,24 @@
 #include<string>
 #include"Role.h"
 #include"Player.h"
+#include<direct.h>
+#include<io.h>
 using namespace std;
-void WriteFollowerLibrary(vector<Follower *>::iterator v){
-	ofstream app("FollowerLibrary.txt", ofstream::app);
+void WriteFollowerLibrary(vector<Follower *>::iterator v,string path){
+	ofstream app(path, ofstream::app);
 	app <<*(*v);
 	app.close();
 }
-void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary) {
+void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 	vector<Follower *>::iterator v;
 	char c;
 	int id=0;
-	int FollowerID;//Ëæ´Ó±àºÅ
-	string FollowerName;//Ëæ´ÓÃû×Ö
-	int FollowerHealth;//Ëæ´ÓÉúÃüÖµ
-	int FollowerAttack;//Ëæ´Ó¹¥»÷Á¦
-	int FollowerCostcystal;//Ëæ´Ó»¨·ÑË®¾§µÄÊıÁ¿
-	ifstream in("FollowerLibrary.txt");
+	int FollowerID;//ï¿½ï¿½Ó±ï¿½ï¿½
+	string FollowerName;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int FollowerHealth;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int FollowerAttack;//ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	int FollowerCostcystal;//ï¿½ï¿½Ó»ï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ifstream in(path);
 	if (in) {
 		while (true){
 			
@@ -85,13 +87,13 @@ void ReadFollowerID(int &FollowerID)
 
 void WritePlayerID(int &PlayerID)
 {
-	ofstream outf("FollowerID.txt");
+	ofstream outf("PlayerID.txt");
 	outf << PlayerID;
 	outf.close();
 }
 void ReadPlayerID(int &PlayerID)
 {
-	ifstream inf("FollowerID.txt");
+	ifstream inf("PlayerID.txt");
 	inf >> PlayerID;
 	inf.close();
 }
@@ -106,10 +108,10 @@ void ReadRoleLibrary(vector<Role *> &RoleLibrary)
 {
 	vector<Role *>::iterator v;
 	int RoleID;
-	string RoleName;//½ÇÉ«Ãû
-	int RoleHealth;//½ÇÉ«ÑªÁ¿
-	int RoleAttack;//½ÇÉ«¹¥»÷Á¦
-	int RoleStatusl;//½ÇÉ«Ë®¾§ÊıÁ¿
+	string RoleName;//ï¿½ï¿½É«ï¿½ï¿½
+	int RoleHealth;//ï¿½ï¿½É«Ñªï¿½ï¿½
+	int RoleAttack;//ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int RoleStatusl;//ï¿½ï¿½É«Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int RoleProfession;
 	ifstream in("RoleLibrary.txt");
 	if (in) {
@@ -140,4 +142,29 @@ void ReadRoleID(int &RoleID)
 	ifstream inf("RoleID.txt");
 	inf >> RoleID;
 	inf.close();
+}
+
+
+void getAllFileNames(const string& folder_path)
+{
+	_finddata_t file;
+	long flag;
+	string filename = folder_path + "\\*.txt";//éå†åˆ¶å®šæ–‡ä»¶å¤¹å†…çš„txtæ–‡ä»¶
+	if ((flag = _findfirst(filename.c_str(), &file)) == -1)//ç›®å½•å†…æ‰¾ä¸åˆ°æ–‡ä»¶
+	{
+		cout << "There is no such type file" << endl;
+	}
+	else
+	{
+		//é€šè¿‡å‰é¢çš„_findfirstæ‰¾åˆ°ç¬¬ä¸€ä¸ªæ–‡ä»¶
+		string name = folder_path + "\\" + file.name;//file.nameå­˜æ”¾çš„æ˜¯éå†å¾—åˆ°çš„æ–‡ä»¶å
+		cout << name << endl;
+		//ä¾æ¬¡å¯»æ‰¾ä»¥åçš„æ–‡ä»¶
+		while (_findnext(flag, &file) == 0)
+		{
+			string name = string(folder_path + "\\" + string(file.name));
+			cout << name << endl;
+		}
+	}
+	_findclose(flag);
 }

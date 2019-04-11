@@ -5,7 +5,7 @@
 void FollowerLibraryMenu() {
 	int FollowerID = 1;
 	vector<Follower *> FollowerLibrary;
-	ReadFollowerLibrary(FollowerLibrary);
+	ReadFollowerLibrary(FollowerLibrary,"FollowerLibrary.txt");
 	ReadFollowerID(FollowerID);
 	char choose = '1';
 	while (choose != '0') {
@@ -64,4 +64,40 @@ void PlayerLibraryMenu() {
 			ShowPlayerLibrary(PlayerLibrary);
 		}
 	}
+}
+
+void PlayerCardLibraryMenu(){
+	int PlayerID = 1;
+	vector<Player*>PlayerLibrary;
+	ReadPlayerLibrary(PlayerLibrary);
+	ReadPlayerID(PlayerID);
+	int FollowerID = 1;
+	vector<Follower *> FollowerLibrary;
+	ReadFollowerLibrary(FollowerLibrary,"FollowerLibrary.txt");
+	ReadFollowerID(FollowerID);
+	char choose = '1';
+
+	while (choose != '0') {
+
+		do {
+			cout << "choose:" << endl;
+			cout << "1.Ìí¼ÓÍæ¼ÒÅÆ¿â" << endl;
+			cout << "" << endl;
+			cout << "" << endl;
+			cout << "" << endl;
+			cin >> choose;
+			fflush(stdin);
+		} while (!(choose >= '0'));
+		if (choose == '1') {
+			//system("cls");
+		 AddPlayerCardLibrary();
+		}
+		else if (choose == '2') {
+
+		}
+		else if (choose == '3') {
+
+		}
+	}
+
 }

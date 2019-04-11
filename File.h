@@ -5,8 +5,8 @@
 #include"Follower.h"
 #include"Player.h"
 #include"Role.h"
-void WriteFollowerLibrary(vector<Follower *>::iterator v);
-void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary);
+void WriteFollowerLibrary(vector<Follower *>::iterator v,string path);
+void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path);
 
 void WritePlayerLibrary(vector<Player *>::iterator v);
 void ReadPlayerLibrary(vector<Player *> &PlayerLibrary);
@@ -22,4 +22,6 @@ void ReadPlayerID(int &PlayerID);
 
 void WriteRoleID(int &RoleID);
 void ReadRoleID(int &RoleID);
+
+void getAllFileNames(const string& folder_path);
 #endif // !FILE_H

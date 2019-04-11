@@ -4,6 +4,8 @@
 #include<functional>
 #include<algorithm>
 #include"Bool.h"
+#include"All.h"
+
 Player::Player(int PlayerID, string PlayerName, int PlayerVictory, int PlayerDefeat) {
 	this->PlayerID = PlayerID;
 	this->PlayerName = PlayerName;
@@ -44,13 +46,13 @@ void AddPlayerLibrary(vector<Player *> &PlayerLibrary, int &PlayerID) {
 	string PlayerName;
 	int PlayerVictory=0;
 	int PlayerDefeat=0;
-
-
-	cout << "请输入一下信息" << endl;
+	cout << "input PlayerID" << endl;
 	cout << "PlayerID:";
 	cout << PlayerID << endl;
 	cout << "PlayerName:";
 	cin >> PlayerName;
+	string dir=to_string(PlayerID)+"Player";
+	mkdir(dir.c_str());
 	PlayerLibrary.push_back((new Player(PlayerID, PlayerName, PlayerVictory, PlayerDefeat)));
 	PlayerID++;
 	WritePlayerID(PlayerID);
@@ -70,7 +72,13 @@ bool DeletePlayerLibrary(vector<Player *>&PlayerLibrary) {
 	else {
 		PlayerLibrary.erase(v);
 		v = PlayerLibrary.begin();
-		WritePlayerLibrary(v);
+		//WritePlayerLibrary(v);
+		ofstream out("PlayerLibrary.txt");
+		while(v!=PlayerLibrary.end()){
+			out<<*(*v);
+			v++;
+		}
+		out.close();
 		return true;
 	}
 
@@ -85,3 +93,24 @@ ostream & operator<<(ostream &out, Player &p) {
 	return out;
 
 }
+
+void AddPlayerCardLibrary(){
+	vector<Player*>PlayerLibrary;
+	ReadPlayerLibrary(PlayerLibrary);
+	int PlayerID;
+	cout<<"Input PlayerID:"<<endl;
+	cin>>PlayerID;
+	for (vector<Player*>::iterator v = PlayerLibrary.begin(); v != PlayerLibrary.end(); v++){
+	if((*v)->GetPlayerID()==PlayerID){
+	string path=to_string(PlayerID)+"Player";
+	//cout<<path<<endl;
+	getAllFileNames(path);  
+		}
+	}
+	string dir;
+	cout<<"璇烽�夋嫨鐗屽簱鍚嶅瓧"<<endl;
+	cin>>dir;
+
+	
+}
+

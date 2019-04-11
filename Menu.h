@@ -6,7 +6,7 @@
 
 void FollowerLibraryMenu();
 void PlayerLibraryMenu();
-
+void PlayerCardLibraryMenu();
 
 
 #endif // !MENU_H

@@ -56,13 +56,13 @@ int Follower::GetFollowCostcystal()
 
 void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID) {
 	vector<Follower *>::iterator v = FollowerLibrary.begin();
-	//int FollowerID;//Ëæ´Ó±àºÅ
-	string FollowerName;//Ëæ´ÓÃû×Ö
-	int FollowerHealth;//Ëæ´ÓÉúÃüÖµ
-	int FollowerAttack;//Ëæ´Ó¹¥»÷Á¦
-	int FollowCostcystal;//Ëæ´Ó»¨·ÑË®¾§µÄÊýÁ¿
+	//int FollowerID;//ï¿½ï¿½Ó±ï¿½ï¿½
+	string FollowerName;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int FollowerHealth;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	int FollowerAttack;//ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	int FollowCostcystal;//ï¿½ï¿½Ó»ï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	cout << "ÇëÊäÈëÒ»ÏÂÐÅÏ¢" << endl;
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢" << endl;
 	cout << "FollowerID:";
 	cout << FollowerID << endl;
 	cout << "FollowerName:";
@@ -80,11 +80,13 @@ void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID) {
 	WriteFollowerID(FollowerID);
 	v = FollowerLibrary.end();
 	v--;
-	WriteFollowerLibrary(v);
+	string path="FollowerLibrary.txt";
+	WriteFollowerLibrary(v,path);
 }
 
 bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary) {
 	vector<Follower *>::iterator v = FollowerLibrary.begin();
+	string path="FollowerLibrary.txt";
 	int FollowerID = 0;
 	cin >> FollowerID;
 	v = find_if(FollowerLibrary.begin(), FollowerLibrary.end(), bind(BoolFollowerID, placeholders::_1, FollowerID));
@@ -93,9 +95,15 @@ bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary) {
 	}
 	else {
 		FollowerLibrary.erase(v);
-		
+		ofstream out("FollowerLibrary.txt");
 		v = FollowerLibrary.begin();
-		WriteFollowerLibrary(v);
+		//WriteFollowerLibrary(v,path);
+		while(v!=FollowerLibrary.end())
+		{
+			out << *(*v);
+			v++;
+		}
+		out.close();
 		return true;
 	}
 
