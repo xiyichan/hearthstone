@@ -1,27 +1,35 @@
-#include"Follower.h"
-#include"Role.h"
-#include"File.h"
-#include<algorithm>
-#include<functional>
-#include"Bool.h"
+#include "Follower.h"
+#include "Role.h"
+#include "File.h"
+#include <algorithm>
+#include <functional>
+#include "Bool.h"
 using namespace std;
 
+Follower::Follower(){
+	
+}
+
 Follower::Follower(int FollowerID, string FollowerName, int FollowerHealth, int FollowerAttack,
-	int FollowCostcystal)
+				   int FollowCostcystal, int FollowerStatus)
 {
 	this->FollowerID = FollowerID;
 	this->FollowerName = FollowerName;
 	this->FollowerHealth = FollowerHealth;
 	this->FollowerAttack = FollowerAttack;
 	this->FollowCostcystal = FollowCostcystal;
+	this->FollowerStatus = FollowerStatus;
 }
-void Follower::SetFollowerID(int ID) {
+void Follower::SetFollowerID(int ID)
+{
 	this->FollowerID = FollowerID;
 }
-int Follower::GetFollowerID() {
+int Follower::GetFollowerID()
+{
 	return this->FollowerID;
 }
-void Follower::SetFollowerName(string FollowerName) {
+void Follower::SetFollowerName(string FollowerName)
+{
 	this->FollowerName = FollowerName;
 }
 string Follower::GetFollowerName()
@@ -52,16 +60,24 @@ int Follower::GetFollowCostcystal()
 {
 	return this->FollowCostcystal;
 }
+void Follower::SetFollowerStatus(int FollowerStatus)
+{
+	this->FollowerStatus = FollowerStatus;
+}
+int Follower::GetFollowerStatus()
+{
+	return this->FollowerStatus;
+}
 
-
-void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID) {
+void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID)
+{
 	vector<Follower *>::iterator v = FollowerLibrary.begin();
-	//int FollowerID;//��ӱ��
-	string FollowerName;//�������
-	int FollowerHealth;//�������ֵ
-	int FollowerAttack;//��ӹ�����
-	int FollowCostcystal;//��ӻ���ˮ��������
-
+	//int FollowerID;
+	string FollowerName;  
+	int FollowerHealth;   
+	int FollowerAttack;   
+	int FollowCostcystal;
+	int FollowerStatus;
 	cout << "������һ����Ϣ" << endl;
 	cout << "FollowerID:";
 	cout << FollowerID << endl;
@@ -73,32 +89,37 @@ void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID) {
 	cin >> FollowerHealth;
 	cout << "FollowCostcystal:";
 	cin >> FollowCostcystal;
+	cout << "FollowerStatus:";
+	cin >> FollowerStatus;
 
 	FollowerLibrary.push_back((new Follower(FollowerID, FollowerName, FollowerHealth, FollowerAttack,
-		FollowCostcystal)));
+											FollowCostcystal, FollowerStatus)));
 	FollowerID++;
 	WriteFollowerID(FollowerID);
 	v = FollowerLibrary.end();
 	v--;
-	string path="FollowerLibrary.txt";
-	WriteFollowerLibrary(v,path);
+	string path = "FollowerLibrary.txt";
+	WriteFollowerLibrary(v, path);
 }
 
-bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary) {
+bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary)
+{
 	vector<Follower *>::iterator v = FollowerLibrary.begin();
-	string path="FollowerLibrary.txt";
+	string path = "FollowerLibrary.txt";
 	int FollowerID = 0;
 	cin >> FollowerID;
 	v = find_if(FollowerLibrary.begin(), FollowerLibrary.end(), bind(BoolFollowerID, placeholders::_1, FollowerID));
-	if (v == FollowerLibrary.end()) {
+	if (v == FollowerLibrary.end())
+	{
 		return false;
 	}
-	else {
+	else
+	{
 		FollowerLibrary.erase(v);
 		ofstream out("FollowerLibrary.txt");
 		v = FollowerLibrary.begin();
 		//WriteFollowerLibrary(v,path);
-		while(v!=FollowerLibrary.end())
+		while (v != FollowerLibrary.end())
 		{
 			out << *(*v);
 			v++;
@@ -106,19 +127,16 @@ bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary) {
 		out.close();
 		return true;
 	}
-
 }
 
-
-
-
-ostream & operator<<(ostream &out, Follower &f) {
+ostream &operator<<(ostream &out, Follower &f)
+{
 
 	out << f.FollowerID << "\t";
 	out << f.FollowerName << "\t";
 	out << f.FollowerHealth << "\t";
 	out << f.FollowerAttack << "\t";
-	out << f.FollowCostcystal << endl;
+	out << f.FollowCostcystal << "\t";
+	out << f.FollowerStatus << endl;
 	return out;
-
 }

@@ -53,17 +53,23 @@ int Role::GetRoleStatusl() {
 	return this->RoleStatusl;
 }
 
-void AddRoleLibrary(vector<Role *>RoleLibrary, int &RoleID) {
+void Role::SetRoleProfeesion(enum Profession RoleProfession){
+	this->RoleStatusl=RoleStatusl;
+}
+enum Profession Role ::GetRoleProfession(){
+		return this->RoleProfession;
+	}
+void AddRoleLibrary(vector<Role *>&RoleLibrary, int &RoleID) {
 	vector<Role*>::iterator v = RoleLibrary.begin();
 	
 	//int RoleID;
-	string RoleName;//½ÇÉ«Ãû
-	int RoleHealth;//½ÇÉ«ÑªÁ¿
-	int RoleAttack;//½ÇÉ«¹¥»÷Á¦
-	int RoleStatusl;//½ÇÉ«Ë®¾§ÊýÁ¿
+	string RoleName;//ï¿½ï¿½É«ï¿½ï¿½
+	int RoleHealth;//ï¿½ï¿½É«Ñªï¿½ï¿½
+	int RoleAttack;//ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int RoleStatusl;//ï¿½ï¿½É«Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int RoleProfession;//Ö°Òµ
 
-	cout << "ÇëÊäÈëÒ»ÏÂÐÅÏ¢" << endl;
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢" << endl;
 	cout << "RoleID:";
 	cout << RoleID << endl;
 	cout << "RoleName:";
@@ -86,7 +92,7 @@ void AddRoleLibrary(vector<Role *>RoleLibrary, int &RoleID) {
 	WriteRoleLibrary(v);
 }
 
-bool DeleteFollowerLibrary(vector<Role *> &RoleLibrary) {
+bool DeleteRoleLibrary(vector<Role *> &RoleLibrary) {
 	vector<Role *>::iterator v = RoleLibrary.begin();
 	int RoleID = 0;
 	cin >> RoleID;
@@ -109,7 +115,8 @@ ostream & operator<<(ostream &out, Role &r) {
 	out << r.GetRoleName() << "\t";
 	out << r.GetRoleAttack() << "\t";
 	out << r.GetRoleHealth() << "\t";
-	out << r.GetRoleStatusl() << endl;
+	out << r.GetRoleStatusl() << "\t";
+	out<<r.GetRoleProfession()<<endl;
 	return out;
 
 }

@@ -7,7 +7,9 @@ int main() {
 		do {
 			cout<<"1.随从列表"<<endl;
 			cout<<"2.玩家列表"<<endl;
-			cout<<"3.玩家牌库"<<endl;
+				cout<<"3.ShowRoleLibrary"<<endl;
+			cout<<"4.玩家牌库"<<endl;
+
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);
@@ -19,6 +21,9 @@ int main() {
 			PlayerLibraryMenu();
 		}
 		else if(choose=='3'){
+			RoleLibraryMenu();
+		}
+		else if(choose=='4'){
 			PlayerCardLibraryMenu();
 		}
 	}

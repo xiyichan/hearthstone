@@ -26,7 +26,7 @@ public:
 	friend ostream & operator << (ostream &  out, Player &p);
 };
 
-void AddPlayerCardLibrary();
+void PlayerCardLibrary();
 void AddPlayerLibrary(vector<Player *> &PlayerLibrary, int &PlayerID);
 bool DeletePlayerLibrary(vector<Player *>&PlayerLibrary);
 #endif

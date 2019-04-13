@@ -2,6 +2,7 @@
 #include"File.h"
 #include"Show.h"
 #include"Player.h"
+#include"All.h"
 void FollowerLibraryMenu() {
 	int FollowerID = 1;
 	vector<Follower *> FollowerLibrary;
@@ -66,6 +67,42 @@ void PlayerLibraryMenu() {
 	}
 }
 
+void RoleLibraryMenu()
+{
+	int RoleID=1;
+	vector<Role *>RoleLibrary;
+	ReadRoleLibrary(RoleLibrary);
+	ReadRoleID(RoleID);
+	char choose = '1';
+	while (choose != '0') {
+
+		do {
+			cout << "choose:" << endl;
+			cout << "1.AddRoleLibrary" << endl;
+			cout << "2.DeleteRoleLibrary" << endl;
+			cout << "3.ShowRoleLibrary" << endl;
+			cout << "0.return" << endl;
+			cin >> choose;
+			fflush(stdin);
+		} while (!(choose >= '0'));
+		if (choose == '1') {
+			system("cls");
+			AddRoleLibrary(RoleLibrary,RoleID);
+		}
+		else if (choose == '2') {
+			DeleteRoleLibrary(RoleLibrary);
+			system("cls");
+		}
+		else if (choose == '3') {
+			system("cls");
+			ShowRoleLibrary(RoleLibrary);
+			
+			
+		}
+	}
+}
+
+
 void PlayerCardLibraryMenu(){
 	int PlayerID = 1;
 	vector<Player*>PlayerLibrary;
@@ -81,19 +118,17 @@ void PlayerCardLibraryMenu(){
 
 		do {
 			cout << "choose:" << endl;
-			cout << "1.添加玩家牌库" << endl;
-			cout << "" << endl;
-			cout << "" << endl;
-			cout << "" << endl;
+			cout << "1.玩家牌库" << endl;
+			cout<<"2.开始比赛"<<endl;
 			cin >> choose;
 			fflush(stdin);
 		} while (!(choose >= '0'));
 		if (choose == '1') {
 			//system("cls");
-		 AddPlayerCardLibrary();
+		 PlayerCardLibrary();
 		}
 		else if (choose == '2') {
-
+				
 		}
 		else if (choose == '3') {
 

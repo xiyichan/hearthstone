@@ -42,10 +42,13 @@ public:
 	void SetRoleStatusl(int RoleStatusl);
 	int GetRoleStatusl();
 
+	void SetRoleProfeesion(enum Profession RoleProfession);
+	enum Profession GetRoleProfession();
+	
 	friend ostream & operator << (ostream &  out, Role &r);
 };
-void AddRoleLibrary(vector<Role *>RoleLibrary, int &RoleID);
-bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary);
+void AddRoleLibrary(vector<Role *>&RoleLibrary, int &RoleID);
+bool DeleteRoleLibrary(vector<Role *> &RoleLibrary);
 
 class RoleSkill {
 private:

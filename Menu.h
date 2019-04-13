@@ -7,6 +7,5 @@
 void FollowerLibraryMenu();
 void PlayerLibraryMenu();
 void PlayerCardLibraryMenu();
-
-
+void RoleLibraryMenu();
 #endif // !MENU_H

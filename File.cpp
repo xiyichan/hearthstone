@@ -23,6 +23,7 @@ void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 	int FollowerHealth;//�������ֵ
 	int FollowerAttack;//��ӹ�����
 	int FollowerCostcystal;//��ӻ���ˮ��������
+	int FollowerStatus;
 	ifstream in(path);
 	if (in) {
 		while (true){
@@ -33,11 +34,12 @@ void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 			in >> FollowerHealth;
 			in >> FollowerAttack;
 			in >> FollowerCostcystal;
+			in>>FollowerStatus;
 			if (in.eof())
 				break;
 			
 			FollowerLibrary.push_back(new Follower(FollowerID, FollowerName, FollowerHealth, FollowerAttack,
-				FollowerCostcystal));
+				FollowerCostcystal,FollowerStatus));
 			
 		} 
 
@@ -108,10 +110,10 @@ void ReadRoleLibrary(vector<Role *> &RoleLibrary)
 {
 	vector<Role *>::iterator v;
 	int RoleID;
-	string RoleName;//��ɫ��
-	int RoleHealth;//��ɫѪ��
-	int RoleAttack;//��ɫ������
-	int RoleStatusl;//��ɫˮ������
+	string RoleName;
+	int RoleHealth;
+	int RoleAttack;
+	int RoleStatusl;
 	int RoleProfession;
 	ifstream in("RoleLibrary.txt");
 	if (in) {
