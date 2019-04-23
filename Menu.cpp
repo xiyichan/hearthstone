@@ -3,6 +3,7 @@
 #include"Show.h"
 #include"Player.h"
 #include"All.h"
+#include"Menu.h"
 void FollowerLibraryMenu() {
 	int FollowerID = 1;
 	vector<Follower *> FollowerLibrary;
@@ -128,7 +129,7 @@ void PlayerCardLibraryMenu(){
 		 PlayerCardLibrary();
 		}
 		else if (choose == '2') {
-				
+				//Game();
 		}
 		else if (choose == '3') {
 

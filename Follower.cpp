@@ -6,12 +6,12 @@
 #include "Bool.h"
 using namespace std;
 
-Follower::Follower(){
-	
+Follower::Follower()
+{
 }
 
 Follower::Follower(int FollowerID, string FollowerName, int FollowerHealth, int FollowerAttack,
-				   int FollowCostcystal, int FollowerStatus)
+				   int FollowCostcystal, int FollowerStatus, enum FollowerProfession FollowerProfession)
 {
 	this->FollowerID = FollowerID;
 	this->FollowerName = FollowerName;
@@ -19,6 +19,7 @@ Follower::Follower(int FollowerID, string FollowerName, int FollowerHealth, int 
 	this->FollowerAttack = FollowerAttack;
 	this->FollowCostcystal = FollowCostcystal;
 	this->FollowerStatus = FollowerStatus;
+	this->FollowerProfession = FollowerProfession;
 }
 void Follower::SetFollowerID(int ID)
 {
@@ -69,15 +70,24 @@ int Follower::GetFollowerStatus()
 	return this->FollowerStatus;
 }
 
+void Follower::SetFollowerProfession(enum FollowerProfession FollowerProfession)
+{
+	this->FollowerProfession = FollowerProfession;
+}
+enum FollowerProfession Follower::GetFollowerProfession()
+{
+	return this->FollowerProfession;
+}
 void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID)
 {
 	vector<Follower *>::iterator v = FollowerLibrary.begin();
 	//int FollowerID;
-	string FollowerName;  
-	int FollowerHealth;   
-	int FollowerAttack;   
+	string FollowerName;
+	int FollowerHealth;
+	int FollowerAttack;
 	int FollowCostcystal;
 	int FollowerStatus;
+	int FollowerProfession;
 	cout << "������һ����Ϣ" << endl;
 	cout << "FollowerID:";
 	cout << FollowerID << endl;
@@ -91,9 +101,11 @@ void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID)
 	cin >> FollowCostcystal;
 	cout << "FollowerStatus:";
 	cin >> FollowerStatus;
-
+	cout << "FollowerProfession:"<<endl;
+	cout << "0.normal 1.mage  2.hunter" << endl;
+	cin >> FollowerProfession;
 	FollowerLibrary.push_back((new Follower(FollowerID, FollowerName, FollowerHealth, FollowerAttack,
-											FollowCostcystal, FollowerStatus)));
+											FollowCostcystal, FollowerStatus, (enum FollowerProfession)FollowerProfession)));
 	FollowerID++;
 	WriteFollowerID(FollowerID);
 	v = FollowerLibrary.end();
@@ -132,11 +144,12 @@ bool DeleteFollowerLibrary(vector<Follower *> &FollowerLibrary)
 ostream &operator<<(ostream &out, Follower &f)
 {
 
-	out << f.FollowerID << "\t";
-	out << f.FollowerName << "\t";
-	out << f.FollowerHealth << "\t";
-	out << f.FollowerAttack << "\t";
-	out << f.FollowCostcystal << "\t";
-	out << f.FollowerStatus << endl;
+	out << f.GetFollowerID() << "\t";
+	out << f.GetFollowerName() << "\t";
+	out << f.GetFollowerHealth() << "\t";
+	out << f.GetFollowerAttack() << "\t";
+	out << f.GetFollowCostcystal() << "\t";
+	out << f.GetFollowerStatus() << "\t";
+	out<<f.GetFollowerProfession()<<endl;
 	return out;
 }

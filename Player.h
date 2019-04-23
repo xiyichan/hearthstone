@@ -10,6 +10,7 @@ private:
 	int PlayerVictory;
 	int PlayerDefeat;
 public:
+Player();
 	Player(int PlayerID, string PlayerName, int PlayerVictory, int PlayerDefeat);
 	void SetPlayerID(int PlayerID);
 	int GetPlayerID();

@@ -1,4 +1,2 @@
 1	malinda	0	30	0	1
-2	aneti	0	30	0	2
-3	kerow	0	30	0	1
-4	awsa	0	30	0	2
+2	gouzi	0	30	0	2

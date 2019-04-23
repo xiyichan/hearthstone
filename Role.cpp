@@ -7,7 +7,9 @@
 #include"Bool.h"
 using namespace std;
 
-
+Role::Role(){
+	
+}
 Role::Role(int RoleID,string RoleName, int RoleHealth, int RoleAttack, int RoleStatusl, enum Profession RoleProfession) {
 	this->RoleID = RoleID;
 	this->RoleName = RoleName;
@@ -54,7 +56,7 @@ int Role::GetRoleStatusl() {
 }
 
 void Role::SetRoleProfeesion(enum Profession RoleProfession){
-	this->RoleStatusl=RoleStatusl;
+	this->RoleProfession=RoleProfession;
 }
 enum Profession Role ::GetRoleProfession(){
 		return this->RoleProfession;

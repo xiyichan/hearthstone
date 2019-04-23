@@ -24,6 +24,7 @@ void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 	int FollowerAttack;//��ӹ�����
 	int FollowerCostcystal;//��ӻ���ˮ��������
 	int FollowerStatus;
+	int FollowerProfession;
 	ifstream in(path);
 	if (in) {
 		while (true){
@@ -35,11 +36,12 @@ void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 			in >> FollowerAttack;
 			in >> FollowerCostcystal;
 			in>>FollowerStatus;
+			in>>FollowerProfession;
 			if (in.eof())
 				break;
 			
 			FollowerLibrary.push_back(new Follower(FollowerID, FollowerName, FollowerHealth, FollowerAttack,
-				FollowerCostcystal,FollowerStatus));
+				FollowerCostcystal,FollowerStatus,(enum FollowerProfession)FollowerProfession));
 			
 		} 
 

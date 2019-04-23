@@ -6,6 +6,9 @@
 #include "Bool.h"
 #include "All.h"
 
+Player::Player(){
+	
+}
 Player::Player(int PlayerID, string PlayerName, int PlayerVictory, int PlayerDefeat)
 {
 	this->PlayerID = PlayerID;
@@ -124,10 +127,23 @@ void PlayerCardLibrary()
 			getAllFileNames(path);
 		}
 	}
+	int flag;
+	string pro;
+	cout << "choose your profession:" << endl;
+	cout << "1.mage 2.hunter" << endl;
+	cin >> flag;
+	if (flag == 1)
+	{
+		pro = "Mage";
+	}
+	else if (flag == 2)
+	{
+		pro = "Hunter";
+	}
 	string dir;
 	cout << "input your card library name:" << endl;
 	cin >> dir;
-	dir = path + "\\" + dir + ".txt";
+	dir = path + "\\" + dir + "_" + pro + ".txt";
 	//cout<<dir<<endl;
 	vector<Follower *>::iterator v;
 	vector<Follower *> FollowerLibrary;
@@ -135,31 +151,47 @@ void PlayerCardLibrary()
 	ReadFollowerLibrary(FollowerLibrary, "FollowerLibrary.txt");
 	ReadFollowerLibrary(PlayerCardLibrary, dir);
 	ShowFollowerLibrary(FollowerLibrary);
-	
+
 	char choose = '1';
 	while (choose != '0')
-	{	int FollowerID = 1;
-		system("cls");
+	{
+		int FollowerID = 1;
+		
 		cout << "1.add card" << endl;
 		cout << "2.detele card" << endl;
-		cout<<"3.show card"<<endl;
+		cout << "3.show card" << endl;
 		cin >> choose;
 		if (choose == '1')
-		{
+		{	system("cls");
+			cout << "ID\tName\t\tAttack\tHealth\tCostcystal\tStatus\tProfession" << endl;
+			for (vector<Follower *>::iterator fo = FollowerLibrary.begin(); fo != FollowerLibrary.end(); fo++)
+			{	
+				if((*fo)->GetFollowerProfession()==flag||(*fo)->GetFollowerProfession()==0){
+				cout << (*fo)->GetFollowerID() << "\t";
+				cout << (*fo)->GetFollowerName() << "\t\t";
+				cout << (*fo)->GetFollowerAttack() << "\t";
+				cout << (*fo)->GetFollowerHealth() << "\t";
+				cout << (*fo)->GetFollowCostcystal() << "\t\t";
+				cout << (*fo)->GetFollowerStatus() << "\t";
+				cout << (*fo)->GetFollowerProfession() << endl;
+				}
+			}
+
 			while (FollowerID > 0)
-			{
+			{	//system("cls");
 				cout << "input your want followerid" << endl;
 				cin >> FollowerID;
 				for (vector<Follower *>::iterator fo = FollowerLibrary.begin(); fo != FollowerLibrary.end(); fo++)
 				{
 					if (PlayerCardLibrary.size() <= 30)
 					{
-						if ((*fo)->GetFollowerID() == FollowerID)
+						if ((*fo)->GetFollowerID() == FollowerID&&((*fo)->GetFollowerProfession()==flag||(*fo)->GetFollowerProfession()==0))
 						{
 							PlayerCardLibrary.push_back(*fo);
 							v = PlayerCardLibrary.end();
 							v--;
 							WriteFollowerLibrary(v, dir);
+							cout<<"success"<<endl;
 							break;
 						}
 					}
@@ -168,7 +200,7 @@ void PlayerCardLibrary()
 						cout << "cardlibrary have 30 card" << endl;
 					}
 				}
-				cout << "no card" << endl;
+				//cout << "no card" << endl;
 			}
 		}
 		if (choose == '2')
@@ -198,7 +230,8 @@ void PlayerCardLibrary()
 				}
 			}
 		}
-		if(choose=='3'){
+		if (choose == '3')
+		{	system("cls");
 			ShowFollowerLibrary(PlayerCardLibrary);
 		}
 	}

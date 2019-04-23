@@ -17,7 +17,7 @@
 #include"Role.cpp"
 #include"Show.cpp"
 #include<iostream>
-#include<string.h>
+#include<string>
 #include<algorithm>
 #include<functional>
 #include"Game.h"

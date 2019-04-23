@@ -1,0 +1,4 @@
+4	dog	2	2	2	0	2
+3	feidao	2	3	3	0	0
+3	feidao	2	3	3	0	0
+4	dog	2	2	2	0	2
