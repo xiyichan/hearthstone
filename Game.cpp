@@ -2,13 +2,14 @@
 using namespace std;
 //é€‰æ‹©çŽ©å®¶
 //çŽ©å®¶é€‰æ‹©ç‰Œåº“
-//å¼€å§‹
+//å¼€ï¿??
 //è½½å…¥ç‰Œåº“
-//å¼ƒç‰Œåº“
+//å¼ƒç‰Œï¿??
 //æˆ˜åœº
 //æ‰‹ç‰Œ
 void Game()
 {
+    bool GameOver = false;
     //vector<Role *> RoleLibrary;
     Role aRole, bRole;
     Player aPlayer, bPlayer;
@@ -34,7 +35,7 @@ void Game()
             cout << "no player,input again" << endl;
     }
 
-    vector<Follower *> aPlayerLibrary; //açš„ç‰Œåº“
+    vector<Follower *> aPlayerLibrary; //açš„ç‰Œï¿??
     string apath = to_string(aPlayerID) + "Player";
     getAllFileNames(apath);
     string adir;
@@ -65,7 +66,7 @@ void Game()
             cout << "no player,input again" << endl;
     }
 
-    vector<Follower *> bPlayerLibrary; //bçš„ç‰Œåº“
+    vector<Follower *> bPlayerLibrary; //bçš„ç‰Œï¿??
     string bpath = to_string(bPlayerID) + "Player";
     getAllFileNames(bpath);
     string bdir;
@@ -76,23 +77,25 @@ void Game()
     cout << bRole.GetRoleProfession() << endl;
     ReadFollowerLibrary(bPlayerLibrary, bdir);
 
-    //å¼€å§‹æ¯”èµ›
+    //å¼€å§‹æ¯”ï¿??
 
-    //   Follower aBattlefield[7];             //açš„æˆ˜åœº
-    // Follower bBattlefield[7];             //bçš„æˆ˜åœº
+    //   Follower aBattlefield[7];
+    // Follower bBattlefield[7];
     vector<Follower *> aBattlefiled;
     vector<Follower *> bBattlefiled;
-    vector<Follower *> aHand;             //açš„æ‰‹ç‰Œ
-    vector<Follower *> bHand;             //bçš„æ‰‹ç‰Œ
-    vector<Follower *> aThrowHandLibrary; //açš„å¼ƒç‰Œåº“
-    vector<Follower *> bThrowHandLibrary; //bçš„å¼ƒç‰Œåº“
+    vector<Follower *> aHand;
+    vector<Follower *> bHand;
+    vector<Follower *> aThrowHandLibrary;
+    vector<Follower *> bThrowHandLibrary;
 
     int i = 0;
     for (vector<Follower *>::iterator v = aPlayerLibrary.begin(); v != aPlayerLibrary.end(); v++)
     {
         // aBattlefield[0]=*(*v);
+
         aHand.push_back(*v);
         i++;
+        aPlayerLibrary.erase(v);
         if (i == 3)
             break;
     }
@@ -108,13 +111,19 @@ void Game()
 
         bHand.push_back(*v);
         i++;
+        bPlayerLibrary.erase(v);
         if (i == 4)
             break;
     }
 
     int huihe = 0, aStatusl = 0, bStatusl = 0;
-    while (aRole.GetRoleHealth() <= 0 && bRole.GetRoleHealth() <= 0)
+    while (true)
     {
+        if (GameOver)
+        {
+            break;
+        }
+
         huihe++;
         if (aStatusl < 10)
         {
@@ -125,54 +134,158 @@ void Game()
         {
             aRole.SetRoleStatusl(10);
         }
+
         cout << "time to a" << endl;
-        cout << "ahand" << endl;
-        ShowFollowerLibrary(aHand);
-        cout << "aBattlefield" << endl;
-        ShowFollowerLibrary(aBattlefiled);
+        DrawCard(aHand, aPlayerLibrary); //³é¿¨
         cout << "bBattlefiled" << endl;
         ShowFollowerLibrary(bBattlefiled);
+        cout << "aBattlefield" << endl;
+        ShowFollowerLibrary(aBattlefiled);
+        cout << "ahand" << endl;
+        ShowFollowerLibrary(aHand);
+        for (vector<Follower *>::iterator c = aBattlefiled.begin(); c != aBattlefiled.end(); c++)
+        {
+            (*c)->SetFollowerStatus(1);
+        }
         ShowRole(aRole);
         char achoose = '1';
         while (achoose != '0')
         {
+            if (GameOver)
+            {
+                break;
+            }
             do
             {
-                cout << "1.call Follower" << endl;
-                cout<<"0.end"<<endl;
+                if (GameOver)
+                {
+                    break;
+                }
+                cout << "1.ÕÙ»½Ëæ´Ó" << endl;
+                cout << "2.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½Ëæ´Ó" << endl;
+                cout << "3.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½½ÇÉ«" << endl;
+
+                cout << "0.½áÊøÕâ¸ö»ØºÏ" << endl;
                 cout << "achoose:" << endl;
                 cin >> achoose;
                 fflush(stdin);
             } while (!(achoose >= '0'));
             if (achoose == '1')
             {
-                CallFollower(aHand, aBattlefiled, aRole);
-                // ShowFollowerLibrary(aBattlefiled);
-                //system("pause");
+                if (aHand.size() > 0)
+                {
+                    CallFollower(aHand, aBattlefiled, aRole);
+                }
+                else
+                {
+                    cout << "Ã»ÓÐÊÖÅÆ" << endl;
+                }
+            }
+            else if (achoose == '2')
+            {
+                system("cls");
+                if (aBattlefiled.size() > 0 && bBattlefiled.size() > 0)
+                    AttackFollower(aBattlefiled, bBattlefiled, aThrowHandLibrary, bThrowHandLibrary);
+                else
+                {
+                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                }
+            }
+            else if (achoose == '3')
+            {
+                system("cls");
+                if (aBattlefiled.size() > 0)
+                {
+                    AttackRole(aBattlefiled, bRole);
+                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer);
+                }
+                else
+                {
+                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                }
             }
         }
+if (GameOver)
+                {
+                    break;
+                }
+        if (bStatusl < 10)
+        {
+            bStatusl++;
+            bRole.SetRoleStatusl(bStatusl);
+        }
+        else
+        {
+            bRole.SetRoleStatusl(10);
+        }
+        cout << "time to b" << endl;
+        DrawCard(bHand, bPlayerLibrary); //³é¿¨
+        cout << "aBattlefield" << endl;
+        ShowFollowerLibrary(aBattlefiled);
+        cout << "bBattlefiled" << endl;
+        ShowFollowerLibrary(bBattlefiled);
+        cout << "bhand" << endl;
+        ShowFollowerLibrary(bHand);
+        for (vector<Follower *>::iterator c = bBattlefiled.begin(); c != bBattlefiled.end(); c++)
+        {
+            (*c)->SetFollowerStatus(1);
+        }
+        ShowRole(bRole);
+
         char bchoose = '1';
         while (bchoose != '0')
         {
+            if (GameOver)
+            {
+                break;
+            }
             do
             {
-                cout << "call Follower" << endl;
+                if (GameOver)
+                {
+                    break;
+                }
+                cout << "1.ÕÙ»½Ëæ´Ó" << endl;
+                cout << "2.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½Ëæ´Ó" << endl;
+                cout << "3.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½½ÇÉ«" << endl;
+
+                cout << "0.½áÊøÕâ¸ö»ØºÏ" << endl;
                 cout << "bchoose:" << endl;
-                cin >> achoose;
+                cin >> bchoose;
                 fflush(stdin);
             } while (!(bchoose >= '0'));
             if (bchoose == '1')
             {
                 if (bHand.size() > 0)
                 {
-
                     CallFollower(bHand, bBattlefiled, bRole);
                 }
-                // ShowFollowerLibrary(aBattlefiled);
-                //system("pause");
                 else
                 {
-                    cout << "hand no card" << endl;
+                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                }
+            }
+            else if (achoose == '2')
+            {
+                system("cls");
+                if (aBattlefiled.size() > 0 && bBattlefiled.size() > 0)
+                    AttackFollower(bBattlefiled, aBattlefiled, bThrowHandLibrary, aThrowHandLibrary);
+                else
+                {
+                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                }
+            }
+            else if (achoose == '3')
+            {
+                system("cls");
+                if (aBattlefiled.size() > 0)
+                {
+                    AttackRole(bBattlefiled, aRole);
+                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer);
+                }
+                else
+                {
+                    cout << "Ã»ÓÐËæ´Ó" << endl;
                 }
             }
         }
@@ -192,25 +305,30 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
     {
         if (id == (*v)->GetFollowerID())
         {
-            if ((*v)->GetFollowerStatus() <= role.GetRoleStatusl())
+            if ((*v)->GetFollowCostcystal() <= role.GetRoleStatusl())
             {
-                ShowFollowerLibrary(Battelefield);
-                cout << Battelefield.size() << endl;
+
+                // cout << Battelefield.size() << endl;
                 if (Battelefield.size() == 0)
                 {
                     Battelefield.push_back(*v);
                 }
                 else
                 {
-                    cout << "fang zai na ge wei zhi " << endl;
+                    cout << "Ñ¡ÔñÎ»ÖÃ" << endl;
                     int where;
                     cin >> where;
                     Battelefield.insert(Battelefield.begin() + where, (*v));
                 }
-                cout << "success" << endl;
-               // Statusl = Statusl - (*v)->GetFollowerStatus();
-               role.SetRoleStatusl(role.GetRoleStatusl()-(*v)->GetFollowerStatus());
+                cout << "ÕÙ»½³É¹¦" << endl;
+                // Statusl = Statusl - (*v)->GetFollowerStatus();
+                role.SetRoleStatusl(role.GetRoleStatusl() - (*v)->GetFollowCostcystal());
                 Hand.erase(v);
+                cout << endl
+                     << "aBattelefield" << endl;
+                ShowFollowerLibrary(Battelefield);
+                // cout << endl<<"hand" << endl;
+
                 break;
             }
             else
@@ -226,15 +344,112 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
     }
 }
 
-void AttackFollower(vector<Follower *> &aBattelefield, vector<Follower *> &bBattlefield)
+void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &beiBattlefield, vector<Follower *> &zhuThrowLibrary, vector<Follower *> &beiThrowLibrary)
 {
+    int vcount = 1;
+    int fcount = 1;
+    cout << "ÎÒ·½Õ½³¡" << endl;
+    ShowFollowerLibrary(beiBattlefield);
+    cout << "µÐ·½Õ½³¡" << endl;
+    ShowFollowerLibrary(zhuBattelefield);
+    int i, j;
+    cout << "Ñ¡ÔñÎÒ·½Ò»¸öËæ´Ó£¬Î»ÖÃ" << endl;
+    cin >> i;
+    vector<Follower *>::iterator v;
+    vector<Follower *>::iterator f;
+    for (v = zhuBattelefield.begin(); v != zhuBattelefield.end(); v++)
+    {
+        if (i == vcount && (*v)->GetFollowerStatus() == 1)
+        {
+            cout << "Ñ¡ÔñµÐ·½Ò»¸öËæ´Ó" << endl;
+            cin >> j;
+            for (f = beiBattlefield.begin(); f != beiBattlefield.end(); f++) ///////////////////å†™ä»€ä¹ˆæ—¶å€™å¯ä»¥æ”»ï¿??
+            {
+                if (j == fcount)
+                {
+                    (*v)->SetFollowerHealth(((*v)->GetFollowerHealth() - (*f)->GetFollowerAttack()));
+                    (*f)->SetFollowerHealth(((*f)->GetFollowerHealth() - (*v)->GetFollowerAttack()));
+                    (*v)->SetFollowerStatus(0);
+                    if ((*v)->GetFollowerHealth() <= 0)
+                    {
+                        zhuThrowLibrary.push_back(*v);
+                        zhuBattelefield.erase(v);
+                    }
+                    if ((*f)->GetFollowerHealth() <= 0)
+                    {
+                        beiBattlefield.push_back(*f);
+                        beiBattlefield.erase(f);
+                    }
+                    cout << "ÎÒ·½Õ½³¡" << endl;
+                    ShowFollowerLibrary(beiBattlefield);
+                    cout << "µÐ·½Õ½³¡" << endl;
+                    ShowFollowerLibrary(zhuBattelefield);
+                    break;
+                }
+                fcount++;
+            }
+            break;
+        }
+        else{
+        vcount++;
+        cout<<"¸ÃËæ´ÓÎÞ·¨¹¥»÷"<<endl;
+        }
+    }
 }
 void AttackRole(vector<Follower *> &Battelefield, Role &role)
 {
+    int count = 1;
+    cout << "ÎÒ·½Õ½³¡" << endl;
+    ShowFollowerLibrary(Battelefield);
+    int i;
+    cout << "Ñ¡ÔñÒ»¸öËæ´Ó" << endl;
+    cin >> i;
+    vector<Follower *>::iterator v;
+    for (v = Battelefield.begin(); v != Battelefield.end(); v++)
+    {
+        if (i == count && (*v)->GetFollowerStatus() == 1)
+        {
+            role.SetRoleHealth(role.GetRoleHealth() - (*v)->GetFollowerAttack());
+            (*v)->SetFollowerStatus(0);
+            ShowRole(role);
+            cout << "attack success" << endl;
+            break;
+        }
+        else{
+            count++;
+            cout<<"¸ÃËæ´ÓÎÞ·¨¹¥»÷"<<endl;
+        }
+    }
 }
 
 void DrawCard(vector<Follower *> &Hand, vector<Follower *> &PlayerCardLibrary)
 {
+    vector<Follower *>::iterator v = PlayerCardLibrary.begin();
+    Hand.push_back(*v);
+    PlayerCardLibrary.erase(v);
+}
+
+bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer)
+{
+    if (aRole.GetRoleHealth() <= 0 && bRole.GetRoleHealth() <= 0)
+    {
+        return true;
+    }
+    else if (aRole.GetRoleHealth() <= 0)
+    {
+        bPlayer.SetPlayerVictory(bPlayer.GetPlayerVictory() + 1);
+        aPlayer.SetPlayerDefeat(aPlayer.GetPlayerDefeat() + 1);
+        cout << "±ÈÈü½áÊø," << bPlayer.GetPlayerName() << "Ê¤Àû" << endl;
+        return true;
+    }
+    else if (bRole.GetRoleHealth() <= 0)
+    {
+        aPlayer.SetPlayerVictory(aPlayer.GetPlayerVictory() + 1);
+        bPlayer.SetPlayerDefeat(bPlayer.GetPlayerDefeat() + 1);
+        cout << "±ÈÈü½áÊø," << aPlayer.GetPlayerName() << "Ê¤Àû" << endl;
+        return true;
+    }
+    return false;
 }
 
 void JudgeProfession(string path, Role &role)
@@ -256,11 +471,12 @@ void JudgeProfession(string path, Role &role)
     else if (path.find("_Hunter") != -1)
     {
         for (vector<Role *>::iterator v = RoleLibrary.begin(); v != RoleLibrary.end(); v++)
-
+        {
             if ((*v)->GetRoleProfession() == 2)
             {
                 role = *(*v);
                 break;
             }
+        }
     }
 }

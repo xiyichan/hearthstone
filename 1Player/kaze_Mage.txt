@@ -3,3 +3,7 @@
 2	mofaxuetu	2	3	2	0	1
 2	mofaxuetu	2	3	2	0	1
 2	mofaxuetu	2	3	2	0	1
+5	lunx	10	10	10	0	0
+6	aso	4	5	4	0	0
+7	aweds	8	8	8	0	0
+8	wgjj	6	5	6	0	0

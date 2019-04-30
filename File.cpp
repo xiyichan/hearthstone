@@ -18,11 +18,11 @@ void ReadFollowerLibrary(vector<Follower *> &FollowerLibrary,string path) {
 	vector<Follower *>::iterator v;
 	char c;
 	int id=0;
-	int FollowerID;//��ӱ��
-	string FollowerName;//�������
-	int FollowerHealth;//�������ֵ
-	int FollowerAttack;//��ӹ�����
-	int FollowerCostcystal;//��ӻ���ˮ��������
+	int FollowerID;
+	string FollowerName;
+	int FollowerHealth;
+	int FollowerAttack;
+	int FollowerCostcystal;
 	int FollowerStatus;
 	int FollowerProfession;
 	ifstream in(path);
@@ -160,10 +160,10 @@ void getAllFileNames(const string& folder_path)
 	}
 	else
 	{
-		//通过前面的_findfirst找到第一个文件
+		//通过前面的_findfirst找到第一个文�?
 		string name = folder_path + "\\" + file.name;//file.name存放的是遍历得到的文件名
 		cout << name << endl;
-		//依次寻找以后的文件
+		//依次寻找以后的文�?
 		while (_findnext(flag, &file) == 0)
 		{
 			string name = string(folder_path + "\\" + string(file.name));

@@ -88,7 +88,7 @@ void AddFollowerLibrary(vector<Follower *> &FollowerLibrary, int &FollowerID)
 	int FollowCostcystal;
 	int FollowerStatus;
 	int FollowerProfession;
-	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢" << endl;
+	cout << "ÇëÊäÈëËæ´ÓID" << endl;
 	cout << "FollowerID:";
 	cout << FollowerID << endl;
 	cout << "FollowerName:";

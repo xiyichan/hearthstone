@@ -65,21 +65,21 @@ void AddRoleLibrary(vector<Role *>&RoleLibrary, int &RoleID) {
 	vector<Role*>::iterator v = RoleLibrary.begin();
 	
 	//int RoleID;
-	string RoleName;//��ɫ��
-	int RoleHealth;//��ɫѪ��
-	int RoleAttack;//��ɫ������
-	int RoleStatusl;//��ɫˮ������
-	int RoleProfession;//ְҵ
+	string RoleName;
+	int RoleHealth;
+	int RoleAttack;
+	int RoleStatusl;
+	int RoleProfession;
 
-	cout << "������һ����Ϣ" << endl;
+	cout << "��ɫ��ID" << endl;
 	cout << "RoleID:";
 	cout << RoleID << endl;
 	cout << "RoleName:";
 	cin >> RoleName;
-	cout << "RoleAttack:";
-	cin >> RoleAttack;
 	cout << "RoleHealth:";
 	cin >> RoleHealth;
+	cout << "RoleAttack:";
+	cin >> RoleAttack;
 	cout << "RoleStatusl:";
 	cin >> RoleStatusl;
 	cout << "RoleProfession:"<<endl;
