@@ -37,7 +37,7 @@ string Follower::GetFollowerName()
 {
 	return this->FollowerName;
 }
-void Follower::SetFollowerHealth(int FolloweHealth)
+void Follower::SetFollowerHealth(int FollowerHealth)
 {
 	this->FollowerHealth = FollowerHealth;
 }

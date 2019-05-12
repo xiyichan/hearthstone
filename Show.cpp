@@ -40,7 +40,7 @@ void ShowRoleLibrary(vector<Role *> &RoleLibrary)
 }
 void ShowRole(Role &r)
 {
-	cout << "ID\tName\tHelath\tAttack\tStatusl\tProfession" << endl;
+	cout << "ID\tName\tHelath\tAttack\tCostcystal\tProfession" << endl;
 	cout << r.GetRoleID() << "\t";
 	cout << r.GetRoleName() << "\t";
 	cout << r.GetRoleHealth() << "\t";

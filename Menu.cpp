@@ -120,7 +120,7 @@ void PlayerCardLibraryMenu(){
 		do {
 			cout << "choose:" << endl;
 			cout << "1.玩家牌库" << endl;
-			cout<<"2.开始比赛"<<endl;
+			
 			cin >> choose;
 			fflush(stdin);
 		} while (!(choose >= '0'));

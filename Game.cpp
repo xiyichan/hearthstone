@@ -1,12 +1,6 @@
 #include "All.h"
 using namespace std;
-//閫夋嫨鐜╁
-//鐜╁閫夋嫨鐗屽簱
-//寮�锟??
-//杞藉叆鐗屽簱
-//寮冪墝锟??
-//鎴樺満
-//鎵嬬墝
+
 void Game()
 {
     bool GameOver = false;
@@ -35,12 +29,12 @@ void Game()
             cout << "no player,input again" << endl;
     }
 
-    vector<Follower *> aPlayerLibrary; //a鐨勭墝锟??
+    vector<Follower *> aPlayerLibrary;
     string apath = to_string(aPlayerID) + "Player";
     getAllFileNames(apath);
     string adir;
     cout << "input your card library name:" << endl;
-    cin >> adir; //璺緞鍖呮嫭鑱屼笟
+    cin >> adir;
 
     adir = apath + "\\" + adir + ".txt";
     JudgeProfession(adir, aRole);
@@ -66,7 +60,7 @@ void Game()
             cout << "no player,input again" << endl;
     }
 
-    vector<Follower *> bPlayerLibrary; //b鐨勭墝锟??
+    vector<Follower *> bPlayerLibrary;
     string bpath = to_string(bPlayerID) + "Player";
     getAllFileNames(bpath);
     string bdir;
@@ -76,8 +70,6 @@ void Game()
     JudgeProfession(bdir, bRole);
     cout << bRole.GetRoleProfession() << endl;
     ReadFollowerLibrary(bPlayerLibrary, bdir);
-
-    //寮�濮嬫瘮锟??
 
     //   Follower aBattlefield[7];
     // Follower bBattlefield[7];
@@ -135,6 +127,10 @@ void Game()
             aRole.SetRoleStatusl(10);
         }
 
+        for (vector<Follower *>::iterator c = aBattlefiled.begin(); c != aBattlefiled.end(); c++)
+        {
+            (*c)->SetFollowerStatus(1);
+        }
         cout << "time to a" << endl;
         DrawCard(aHand, aPlayerLibrary); //抽卡
         cout << "bBattlefiled" << endl;
@@ -143,10 +139,7 @@ void Game()
         ShowFollowerLibrary(aBattlefiled);
         cout << "ahand" << endl;
         ShowFollowerLibrary(aHand);
-        for (vector<Follower *>::iterator c = aBattlefiled.begin(); c != aBattlefiled.end(); c++)
-        {
-            (*c)->SetFollowerStatus(1);
-        }
+
         ShowRole(aRole);
         char achoose = '1';
         while (achoose != '0')
@@ -164,7 +157,6 @@ void Game()
                 cout << "1.召唤随从" << endl;
                 cout << "2.选择一个随从攻击敌方随从" << endl;
                 cout << "3.选择一个随从攻击敌方角色" << endl;
-
                 cout << "0.结束这个回合" << endl;
                 cout << "achoose:" << endl;
                 cin >> achoose;
@@ -205,10 +197,11 @@ void Game()
                 }
             }
         }
-if (GameOver)
-                {
-                    break;
-                }
+        if (GameOver)
+        {
+            break;
+        }
+
         if (bStatusl < 10)
         {
             bStatusl++;
@@ -218,6 +211,11 @@ if (GameOver)
         {
             bRole.SetRoleStatusl(10);
         }
+
+        for (vector<Follower *>::iterator c = bBattlefiled.begin(); c != bBattlefiled.end(); c++)
+        {
+            (*c)->SetFollowerStatus(1);
+        }
         cout << "time to b" << endl;
         DrawCard(bHand, bPlayerLibrary); //抽卡
         cout << "aBattlefield" << endl;
@@ -226,10 +224,7 @@ if (GameOver)
         ShowFollowerLibrary(bBattlefiled);
         cout << "bhand" << endl;
         ShowFollowerLibrary(bHand);
-        for (vector<Follower *>::iterator c = bBattlefiled.begin(); c != bBattlefiled.end(); c++)
-        {
-            (*c)->SetFollowerStatus(1);
-        }
+
         ShowRole(bRole);
 
         char bchoose = '1';
@@ -248,7 +243,6 @@ if (GameOver)
                 cout << "1.召唤随从" << endl;
                 cout << "2.选择一个随从攻击敌方随从" << endl;
                 cout << "3.选择一个随从攻击敌方角色" << endl;
-
                 cout << "0.结束这个回合" << endl;
                 cout << "bchoose:" << endl;
                 cin >> bchoose;
@@ -265,7 +259,7 @@ if (GameOver)
                     cout << "没有随从" << endl;
                 }
             }
-            else if (achoose == '2')
+            else if (bchoose == '2')
             {
                 system("cls");
                 if (aBattlefiled.size() > 0 && bBattlefiled.size() > 0)
@@ -275,10 +269,10 @@ if (GameOver)
                     cout << "没有随从" << endl;
                 }
             }
-            else if (achoose == '3')
+            else if (bchoose == '3')
             {
                 system("cls");
-                if (aBattlefiled.size() > 0)
+                if (bBattlefiled.size() > 0)
                 {
                     AttackRole(bBattlefiled, aRole);
                     GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer);
@@ -325,7 +319,7 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
                 role.SetRoleStatusl(role.GetRoleStatusl() - (*v)->GetFollowCostcystal());
                 Hand.erase(v);
                 cout << endl
-                     << "aBattelefield" << endl;
+                     << "Battelefield" << endl;
                 ShowFollowerLibrary(Battelefield);
                 // cout << endl<<"hand" << endl;
 
@@ -346,11 +340,13 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
 
 void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &beiBattlefield, vector<Follower *> &zhuThrowLibrary, vector<Follower *> &beiThrowLibrary)
 {
+    int vhealth, vattack;
+    int fhealth, fattack;
     int vcount = 1;
     int fcount = 1;
-    cout << "我方战场" << endl;
-    ShowFollowerLibrary(beiBattlefield);
     cout << "敌方战场" << endl;
+    ShowFollowerLibrary(beiBattlefield);
+    cout << "我方战场" << endl;
     ShowFollowerLibrary(zhuBattelefield);
     int i, j;
     cout << "选择我方一个随从，位置" << endl;
@@ -363,13 +359,21 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
         {
             cout << "选择敌方一个随从" << endl;
             cin >> j;
-            for (f = beiBattlefield.begin(); f != beiBattlefield.end(); f++) ///////////////////鍐欎粈涔堟椂鍊欏彲浠ユ敾锟??
+            for (f = beiBattlefield.begin(); f != beiBattlefield.end(); f++)
             {
                 if (j == fcount)
-                {
-                    (*v)->SetFollowerHealth(((*v)->GetFollowerHealth() - (*f)->GetFollowerAttack()));
-                    (*f)->SetFollowerHealth(((*f)->GetFollowerHealth() - (*v)->GetFollowerAttack()));
+                { //int test=100;
+                    vhealth = (*v)->GetFollowerHealth();
+                    vattack = (*v)->GetFollowerAttack();
+                    fhealth = (*f)->GetFollowerHealth();
+                    fattack = (*f)->GetFollowerAttack();
+
+                    (*v)->SetFollowerHealth(vhealth - fattack);
+                    (*f)->SetFollowerHealth(fhealth - vattack);
+                   // cout << (*v)->GetFollowerHealth() << endl;
+                    //cout << (*f)->GetFollowerHealth() << endl;
                     (*v)->SetFollowerStatus(0);
+
                     if ((*v)->GetFollowerHealth() <= 0)
                     {
                         zhuThrowLibrary.push_back(*v);
@@ -377,12 +381,12 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
                     }
                     if ((*f)->GetFollowerHealth() <= 0)
                     {
-                        beiBattlefield.push_back(*f);
+                        beiThrowLibrary.push_back(*f);
                         beiBattlefield.erase(f);
                     }
-                    cout << "我方战场" << endl;
-                    ShowFollowerLibrary(beiBattlefield);
                     cout << "敌方战场" << endl;
+                    ShowFollowerLibrary(beiBattlefield);
+                    cout << "我方战场" << endl;
                     ShowFollowerLibrary(zhuBattelefield);
                     break;
                 }
@@ -390,9 +394,10 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
             }
             break;
         }
-        else{
-        vcount++;
-        cout<<"该随从无法攻击"<<endl;
+        else
+        {
+            vcount++;
+            cout << "该随从无法攻击" << endl;
         }
     }
 }
@@ -415,9 +420,10 @@ void AttackRole(vector<Follower *> &Battelefield, Role &role)
             cout << "attack success" << endl;
             break;
         }
-        else{
+        else
+        {
             count++;
-            cout<<"该随从无法攻击"<<endl;
+            cout << "该随从无法攻击" << endl;
         }
     }
 }
@@ -431,21 +437,34 @@ void DrawCard(vector<Follower *> &Hand, vector<Follower *> &PlayerCardLibrary)
 
 bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer)
 {
+
     if (aRole.GetRoleHealth() <= 0 && bRole.GetRoleHealth() <= 0)
     {
         return true;
     }
     else if (aRole.GetRoleHealth() <= 0)
     {
-        bPlayer.SetPlayerVictory(bPlayer.GetPlayerVictory() + 1);
-        aPlayer.SetPlayerDefeat(aPlayer.GetPlayerDefeat() + 1);
+        /*
+        int bPlayerV = bPlayer.GetPlayerVictory();
+        bPlayerV++;
+        int aPlayerD = aPlayer.GetPlayerDefeat();
+        aPlayerD++;
+        bPlayer.SetPlayerVictory(bPlayerV);
+        aPlayer.SetPlayerDefeat(aPlayerD);
+        */
         cout << "比赛结束," << bPlayer.GetPlayerName() << "胜利" << endl;
         return true;
     }
     else if (bRole.GetRoleHealth() <= 0)
-    {
-        aPlayer.SetPlayerVictory(aPlayer.GetPlayerVictory() + 1);
-        bPlayer.SetPlayerDefeat(bPlayer.GetPlayerDefeat() + 1);
+    { /*
+        int bPlayerD = bPlayer.GetPlayerDefeat();
+        bPlayerD++;
+        int aPlayerV = aPlayer.GetPlayerVictory();
+        aPlayerV++;
+        aPlayer.SetPlayerVictory(aPlayerV);
+       
+        bPlayer.SetPlayerDefeat(bPlayerD);
+       */
         cout << "比赛结束," << aPlayer.GetPlayerName() << "胜利" << endl;
         return true;
     }

@@ -9,13 +9,13 @@ int main()
 		{
 			cout << "1.随从列表" << endl;
 			cout << "2.玩家列表" << endl;
-			cout << "3.ShowRoleLibrary" << endl;
+			cout << "3.英雄列表" << endl;
 			cout << "4.玩家牌库" << endl;
-			cout<<"5.game"<<endl;
+			cout << "5.game" << endl;
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);
-		} while (!(choose>= '0'));
+		} while (!(choose >= '0'));
 		if (choose == '1')
 		{
 			FollowerLibraryMenu();
@@ -32,7 +32,8 @@ int main()
 		{
 			PlayerCardLibraryMenu();
 		}
-		else if(choose=='5'){
+		else if (choose == '5')
+		{
 			Game();
 		}
 	}
