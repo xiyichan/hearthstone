@@ -1,2 +1,2 @@
-1	xiyi		0	0
-2	rsus		0	0
+1	xiyi		1	0
+2	rsus		0	1

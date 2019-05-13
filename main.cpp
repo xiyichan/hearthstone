@@ -11,7 +11,7 @@ int main()
 			cout << "2.玩家列表" << endl;
 			cout << "3.英雄列表" << endl;
 			cout << "4.玩家牌库" << endl;
-			cout << "5.game" << endl;
+			cout << "5.开始比赛" << endl;
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);

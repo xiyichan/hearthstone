@@ -153,17 +153,15 @@ void getAllFileNames(const string& folder_path)
 {
 	_finddata_t file;
 	long flag;
-	string filename = folder_path + "\\*.txt";//遍历制定文件夹内的txt文件
-	if ((flag = _findfirst(filename.c_str(), &file)) == -1)//目录内找不到文件
+	string filename = folder_path + "\\*.txt";
+	if ((flag = _findfirst(filename.c_str(), &file)) == -1)
 	{
 		cout << "There is no such type file" << endl;
 	}
 	else
 	{
-		//通过前面的_findfirst找到第一个文�?
-		string name = folder_path + "\\" + file.name;//file.name存放的是遍历得到的文件名
+		string name = folder_path + "\\" + file.name;
 		cout << name << endl;
-		//依次寻找以后的文�?
 		while (_findnext(flag, &file) == 0)
 		{
 			string name = string(folder_path + "\\" + string(file.name));

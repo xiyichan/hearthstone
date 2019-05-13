@@ -8,5 +8,5 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
 void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &beiBattlefield, vector<Follower *> &zhuThrowLibrary, vector<Follower *> &beiThrowLibrary);
 void AttackRole(vector<Follower *> &Battelefield, Role &role);
 void DrawCard(vector<Follower *> & Hand, vector<Follower *> & PlayerCardLibrary);
-bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer);
+bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer,vector<Player *>PlayerLibrary);
 #endif

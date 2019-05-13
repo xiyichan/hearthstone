@@ -113,27 +113,8 @@ void PlayerCardLibraryMenu(){
 	vector<Follower *> FollowerLibrary;
 	ReadFollowerLibrary(FollowerLibrary,"FollowerLibrary.txt");
 	ReadFollowerID(FollowerID);
-	char choose = '1';
-
-	while (choose != '0') {
-
-		do {
-			cout << "choose:" << endl;
-			cout << "1.Íæ¼ÒÅÆ¿â" << endl;
-			
-			cin >> choose;
-			fflush(stdin);
-		} while (!(choose >= '0'));
-		if (choose == '1') {
-			//system("cls");
-		 PlayerCardLibrary();
-		}
-		else if (choose == '2') {
-				//Game();
-		}
-		else if (choose == '3') {
-
-		}
-	}
+ 
+ 
+ PlayerCardLibrary();
 
 }

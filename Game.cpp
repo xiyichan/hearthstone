@@ -189,7 +189,7 @@ void Game()
                 if (aBattlefiled.size() > 0)
                 {
                     AttackRole(aBattlefiled, bRole);
-                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer);
+                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer, PlayerLibrary);
                 }
                 else
                 {
@@ -275,7 +275,7 @@ void Game()
                 if (bBattlefiled.size() > 0)
                 {
                     AttackRole(bBattlefiled, aRole);
-                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer);
+                    GameOver = judgeRoleHealth(aRole, bRole, aPlayer, bPlayer, PlayerLibrary);
                 }
                 else
                 {
@@ -370,7 +370,7 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
 
                     (*v)->SetFollowerHealth(vhealth - fattack);
                     (*f)->SetFollowerHealth(fhealth - vattack);
-                   // cout << (*v)->GetFollowerHealth() << endl;
+                    // cout << (*v)->GetFollowerHealth() << endl;
                     //cout << (*f)->GetFollowerHealth() << endl;
                     (*v)->SetFollowerStatus(0);
 
@@ -435,37 +435,62 @@ void DrawCard(vector<Follower *> &Hand, vector<Follower *> &PlayerCardLibrary)
     PlayerCardLibrary.erase(v);
 }
 
-bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer)
+bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer, vector<Player *> PlayerLibrary)
 {
-
+    int aID = aPlayer.GetPlayerID();
+    int bID = bPlayer.GetPlayerID();
+    vector<Player *>::iterator v = PlayerLibrary.begin();
     if (aRole.GetRoleHealth() <= 0 && bRole.GetRoleHealth() <= 0)
     {
         return true;
     }
     else if (aRole.GetRoleHealth() <= 0)
     {
-        /*
-        int bPlayerV = bPlayer.GetPlayerVictory();
-        bPlayerV++;
-        int aPlayerD = aPlayer.GetPlayerDefeat();
-        aPlayerD++;
-        bPlayer.SetPlayerVictory(bPlayerV);
-        aPlayer.SetPlayerDefeat(aPlayerD);
-        */
+        for (v = PlayerLibrary.begin(); v != PlayerLibrary.end(); v++)
+        {
+            if ((*v)->GetPlayerID() == aPlayer.GetPlayerID())
+            {
+                (*v)->SetPlayerDefeat((*v)->GetPlayerDefeat() + 1);
+            }
+            if ((*v)->GetPlayerID() == bPlayer.GetPlayerID())
+            {
+                (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
+            }
+        }
         cout << "比赛结束," << bPlayer.GetPlayerName() << "胜利" << endl;
+    	v = PlayerLibrary.begin();
+		
+		ofstream out("PlayerLibrary.txt");
+		while (v != PlayerLibrary.end())
+		{
+			out << *(*v);
+			v++;
+		}
         return true;
     }
     else if (bRole.GetRoleHealth() <= 0)
-    { /*
-        int bPlayerD = bPlayer.GetPlayerDefeat();
-        bPlayerD++;
-        int aPlayerV = aPlayer.GetPlayerVictory();
-        aPlayerV++;
-        aPlayer.SetPlayerVictory(aPlayerV);
-       
-        bPlayer.SetPlayerDefeat(bPlayerD);
-       */
+    {
+
+        for (v = PlayerLibrary.begin(); v != PlayerLibrary.end(); v++)
+        {
+            if ((*v)->GetPlayerID() == bPlayer.GetPlayerID())
+            {
+                (*v)->SetPlayerDefeat((*v)->GetPlayerDefeat() + 1);
+            }
+            if ((*v)->GetPlayerID() == aPlayer.GetPlayerID())
+            {
+                (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
+            }
+        }
         cout << "比赛结束," << aPlayer.GetPlayerName() << "胜利" << endl;
+   	v = PlayerLibrary.begin();
+		
+		ofstream out("PlayerLibrary.txt");
+		while (v != PlayerLibrary.end())
+		{
+			out << *(*v);
+			v++;
+		}
         return true;
     }
     return false;
