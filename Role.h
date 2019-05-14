@@ -18,10 +18,8 @@ private:
 	string RoleName; //角色名
 	int RoleHealth;  //角色血量
 	int RoleAttack;  //角色攻击力
-
 	int RoleStatusl; //角色水晶数量
 	enum Profession RoleProfession;
-
 	//RoleSkill RSkill;//英雄技能
 
 public:

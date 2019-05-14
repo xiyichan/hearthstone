@@ -132,7 +132,7 @@ void Game()
             (*c)->SetFollowerStatus(1);
         }
         cout << "time to a" << endl;
-        DrawCard(aHand, aPlayerLibrary); //³é¿¨
+        DrawCard(aHand, aPlayerLibrary); //ï¿½é¿¨
         cout << "bBattlefiled" << endl;
         ShowFollowerLibrary(bBattlefiled);
         cout << "aBattlefield" << endl;
@@ -154,10 +154,10 @@ void Game()
                 {
                     break;
                 }
-                cout << "1.ÕÙ»½Ëæ´Ó" << endl;
-                cout << "2.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½Ëæ´Ó" << endl;
-                cout << "3.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½½ÇÉ«" << endl;
-                cout << "0.½áÊøÕâ¸ö»ØºÏ" << endl;
+                cout << "1.å¬å”¤éšä»Ž" << endl;
+                cout << "2.é€‰æ‹©ä¸€ä¸ªéšä»Žæ”»å‡»æ•Œæ–¹ä¸€ä¸ªéšä»Ž" << endl;
+                cout << "3.é€‰æ‹©ä¸€ä¸ªéšä»Žæ”»å‡»æ•Œæ–¹è‹±é›„ "<< endl;
+                cout << "0.ç»“æŸå›žåˆ" << endl;
                 cout << "achoose:" << endl;
                 cin >> achoose;
                 fflush(stdin);
@@ -170,7 +170,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "Ã»ÓÐÊÖÅÆ" << endl;
+                    cout << "å¬å”¤ä¸æˆåŠŸ" << endl;
                 }
             }
             else if (achoose == '2')
@@ -180,7 +180,7 @@ void Game()
                     AttackFollower(aBattlefiled, bBattlefiled, aThrowHandLibrary, bThrowHandLibrary);
                 else
                 {
-                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                    cout << "æ”»å‡»ä¸æˆåŠŸ" << endl;
                 }
             }
             else if (achoose == '3')
@@ -193,7 +193,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                    cout << "æ”»å‡»ä¸æˆåŠŸ" << endl;
                 }
             }
         }
@@ -217,7 +217,7 @@ void Game()
             (*c)->SetFollowerStatus(1);
         }
         cout << "time to b" << endl;
-        DrawCard(bHand, bPlayerLibrary); //³é¿¨
+        DrawCard(bHand, bPlayerLibrary); //ï¿½é¿¨
         cout << "aBattlefield" << endl;
         ShowFollowerLibrary(aBattlefiled);
         cout << "bBattlefiled" << endl;
@@ -240,10 +240,10 @@ void Game()
                 {
                     break;
                 }
-                cout << "1.ÕÙ»½Ëæ´Ó" << endl;
-                cout << "2.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½Ëæ´Ó" << endl;
-                cout << "3.Ñ¡ÔñÒ»¸öËæ´Ó¹¥»÷µÐ·½½ÇÉ«" << endl;
-                cout << "0.½áÊøÕâ¸ö»ØºÏ" << endl;
+             cout << "1.å¬å”¤éšä»Ž" << endl;
+                cout << "2.é€‰æ‹©ä¸€ä¸ªéšä»Žæ”»å‡»æ•Œæ–¹ä¸€ä¸ªéšä»Ž" << endl;
+                cout << "3.é€‰æ‹©ä¸€ä¸ªéšä»Žæ”»å‡»æ•Œæ–¹è‹±é›„ "<< endl;
+                cout << "0.ç»“æŸå›žåˆ" << endl;
                 cout << "bchoose:" << endl;
                 cin >> bchoose;
                 fflush(stdin);
@@ -256,7 +256,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                    cout << "å¬å”¤ä¸æˆåŠŸ" << endl;
                 }
             }
             else if (bchoose == '2')
@@ -266,7 +266,7 @@ void Game()
                     AttackFollower(bBattlefiled, aBattlefiled, bThrowHandLibrary, aThrowHandLibrary);
                 else
                 {
-                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                    cout << "æ”»å‡»ä¸æˆåŠŸ" << endl;
                 }
             }
             else if (bchoose == '3')
@@ -279,7 +279,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "Ã»ÓÐËæ´Ó" << endl;
+                    cout << "æ”»å‡»ä¸æˆåŠŸ" << endl;
                 }
             }
         }
@@ -309,12 +309,12 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
                 }
                 else
                 {
-                    cout << "Ñ¡ÔñÎ»ÖÃ" << endl;
+                    cout << "è¯·é€‰æ‹©ä½ç½®" << endl;
                     int where;
                     cin >> where;
                     Battelefield.insert(Battelefield.begin() + where, (*v));
                 }
-                cout << "ÕÙ»½³É¹¦" << endl;
+                cout << "å¬å”¤æˆåŠŸ" << endl;
                 // Statusl = Statusl - (*v)->GetFollowerStatus();
                 role.SetRoleStatusl(role.GetRoleStatusl() - (*v)->GetFollowCostcystal());
                 Hand.erase(v);
@@ -344,12 +344,12 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
     int fhealth, fattack;
     int vcount = 1;
     int fcount = 1;
-    cout << "µÐ·½Õ½³¡" << endl;
+    cout << "æ•Œæ–¹æˆ˜åœº" << endl;
     ShowFollowerLibrary(beiBattlefield);
-    cout << "ÎÒ·½Õ½³¡" << endl;
+    cout << "æˆ‘æ–¹æˆ˜åœº" << endl;
     ShowFollowerLibrary(zhuBattelefield);
     int i, j;
-    cout << "Ñ¡ÔñÎÒ·½Ò»¸öËæ´Ó£¬Î»ÖÃ" << endl;
+    cout << "è¯·é€‰æ‹©è¦çš„éšä»Žï¼ˆé¡ºåºï¼‰" << endl;
     cin >> i;
     vector<Follower *>::iterator v;
     vector<Follower *>::iterator f;
@@ -357,7 +357,7 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
     {
         if (i == vcount && (*v)->GetFollowerStatus() == 1)
         {
-            cout << "Ñ¡ÔñµÐ·½Ò»¸öËæ´Ó" << endl;
+            cout << "è¯·é€‰æ‹©è¦æ”»å‡»çš„éšä»Žï¼ˆé¡ºåºï¼‰" << endl;
             cin >> j;
             for (f = beiBattlefield.begin(); f != beiBattlefield.end(); f++)
             {
@@ -384,10 +384,10 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
                         beiThrowLibrary.push_back(*f);
                         beiBattlefield.erase(f);
                     }
-                    cout << "µÐ·½Õ½³¡" << endl;
-                    ShowFollowerLibrary(beiBattlefield);
-                    cout << "ÎÒ·½Õ½³¡" << endl;
-                    ShowFollowerLibrary(zhuBattelefield);
+                     cout << "æ•Œæ–¹æˆ˜åœº" << endl;
+    ShowFollowerLibrary(beiBattlefield);
+    cout << "æˆ‘æ–¹æˆ˜åœº" << endl;
+    ShowFollowerLibrary(zhuBattelefield);
                     break;
                 }
                 fcount++;
@@ -397,17 +397,17 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
         else
         {
             vcount++;
-            cout << "¸ÃËæ´ÓÎÞ·¨¹¥»÷" << endl;
+            //cout << "" << endl;
         }
     }
 }
 void AttackRole(vector<Follower *> &Battelefield, Role &role)
 {
     int count = 1;
-    cout << "ÎÒ·½Õ½³¡" << endl;
+    cout << "æˆ‘æ–¹æˆ˜åœº" << endl;
     ShowFollowerLibrary(Battelefield);
     int i;
-    cout << "Ñ¡ÔñÒ»¸öËæ´Ó" << endl;
+    cout << "è¯·é€‰æ‹©ä¸€ä¸ªéšä»Ž" << endl;
     cin >> i;
     vector<Follower *>::iterator v;
     for (v = Battelefield.begin(); v != Battelefield.end(); v++)
@@ -423,7 +423,7 @@ void AttackRole(vector<Follower *> &Battelefield, Role &role)
         else
         {
             count++;
-            cout << "¸ÃËæ´ÓÎÞ·¨¹¥»÷" << endl;
+           // cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
         }
     }
 }
@@ -457,7 +457,7 @@ bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer,
                 (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
             }
         }
-        cout << "±ÈÈü½áÊø," << bPlayer.GetPlayerName() << "Ê¤Àû" << endl;
+        cout << "æ¯”èµ›ç»“æŸ," << bPlayer.GetPlayerName() << "èƒœåˆ©" << endl;
     	v = PlayerLibrary.begin();
 		
 		ofstream out("PlayerLibrary.txt");
@@ -482,7 +482,7 @@ bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer,
                 (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
             }
         }
-        cout << "±ÈÈü½áÊø," << aPlayer.GetPlayerName() << "Ê¤Àû" << endl;
+        cout << "æ¯”èµ›ç»“æŸ," << aPlayer.GetPlayerName() << "èƒœåˆ©" << endl;
    	v = PlayerLibrary.begin();
 		
 		ofstream out("PlayerLibrary.txt");

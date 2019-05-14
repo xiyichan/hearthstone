@@ -7,11 +7,11 @@ int main()
 	{
 		do
 		{
-			cout << "1.Ëæ´ÓÁĞ±í" << endl;
-			cout << "2.Íæ¼ÒÁĞ±í" << endl;
-			cout << "3.Ó¢ĞÛÁĞ±í" << endl;
-			cout << "4.Íæ¼ÒÅÆ¿â" << endl;
-			cout << "5.¿ªÊ¼±ÈÈü" << endl;
+			cout << "1.éšä»åˆ—è¡¨" << endl;
+			cout << "2.ç©å®¶åˆ—è¡¨" << endl;
+			cout << "3.è‹±é›„åˆ—è¡¨" << endl;
+			cout << "4.ç©å®¶ç‰Œåº“" << endl;
+			cout << "5.å¼€å§‹æ¯”èµ›" << endl;
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);
@@ -40,9 +40,3 @@ int main()
 
 	return 0;
 }
-/*
-	vector<Follower *> RoleCard;//½ÇÉ«ÊÖÅÆËæ´Ó,ÉÏÏŞÊ®¸ö
-	vector<Follower *> RoleCardLibrary;//½ÇÉ«ÅÆ¿âËæ´Ó£¬ÉÏÏŞ30
-	vector<Follower *> RoleThrowCardLibrary;//½ÇÉ«ÆúÅÆÅÆ¿â£¬ÉÏÏŞ30
-	list<Follower *> RoleFollwer;//µ±Ç°³¡ÉÏËæ´Ó£¬ÉÏÏŞ7¸ö	
-	*/
