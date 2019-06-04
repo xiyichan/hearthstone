@@ -1,2 +1,4 @@
 1	malinda	2	0	0	1
 2	gouzi	2	0	0	2
+3	wo	0	30	1	1
+1	malinda	0	2	0	1

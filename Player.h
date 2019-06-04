@@ -1,16 +1,18 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include<iostream>
-#include"Follower.h"
+#include <iostream>
+#include "Follower.h"
 
-class Player {
+class Player
+{
 private:
 	int PlayerID;
 	string PlayerName;
 	int PlayerVictory;
 	int PlayerDefeat;
+
 public:
-Player();
+	Player();
 	Player(int PlayerID, string PlayerName, int PlayerVictory, int PlayerDefeat);
 	void SetPlayerID(int PlayerID);
 	int GetPlayerID();
@@ -24,10 +26,10 @@ Player();
 	void SetPlayerDefeat(int PlayerDefeat);
 	int GetPlayerDefeat();
 
-	friend ostream & operator << (ostream &  out, Player &p);
+	friend ostream &operator<<(ostream &out, Player &p);
 };
 
 void PlayerCardLibrary();
 void AddPlayerLibrary(vector<Player *> &PlayerLibrary, int &PlayerID);
-bool DeletePlayerLibrary(vector<Player *>&PlayerLibrary);
+bool DeletePlayerLibrary(vector<Player *> &PlayerLibrary);
 #endif

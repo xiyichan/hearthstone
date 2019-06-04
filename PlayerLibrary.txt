@@ -1,3 +1,4 @@
-1	xiyi		1	0
-2	rsus		0	1
+1	xiyi		2	0
+2	rsus		0	2
 3	ross		0	0
+4	chenliefng		0	0

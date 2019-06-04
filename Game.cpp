@@ -154,10 +154,10 @@ void Game()
                 {
                     break;
                 }
-                cout << "1.召唤随从" << endl;
-                cout << "2.选择一个随从攻击敌方一个随从" << endl;
-                cout << "3.选择一个随从攻击敌方英雄 "<< endl;
-                cout << "0.结束回合" << endl;
+                cout << "1.CallFollower" << endl;
+                cout << "2.AttackFollower" << endl;
+                cout << "3.AttackRole"<< endl;
+                cout << "0.end" << endl;
                 cout << "achoose:" << endl;
                 cin >> achoose;
                 fflush(stdin);
@@ -170,7 +170,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "召唤不成功" << endl;
+                    cout << "Unsuccessful call" << endl;
                 }
             }
             else if (achoose == '2')
@@ -180,7 +180,7 @@ void Game()
                     AttackFollower(aBattlefiled, bBattlefiled, aThrowHandLibrary, bThrowHandLibrary);
                 else
                 {
-                    cout << "攻击不成功" << endl;
+                    cout << "Unsuccessful attack " << endl;
                 }
             }
             else if (achoose == '3')
@@ -193,7 +193,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "攻击不成功" << endl;
+                    cout << "Unsuccessful attack" << endl;
                 }
             }
         }
@@ -240,10 +240,10 @@ void Game()
                 {
                     break;
                 }
-             cout << "1.召唤随从" << endl;
-                cout << "2.选择一个随从攻击敌方一个随从" << endl;
-                cout << "3.选择一个随从攻击敌方英雄 "<< endl;
-                cout << "0.结束回合" << endl;
+                 cout << "1.CallFollower" << endl;
+                cout << "2.AttackFollower" << endl;
+                cout << "3.AttackRole"<< endl;
+                cout << "0.end" << endl;
                 cout << "bchoose:" << endl;
                 cin >> bchoose;
                 fflush(stdin);
@@ -256,7 +256,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "召唤不成功" << endl;
+                    cout << "Unsuccessful call" << endl;
                 }
             }
             else if (bchoose == '2')
@@ -266,7 +266,7 @@ void Game()
                     AttackFollower(bBattlefiled, aBattlefiled, bThrowHandLibrary, aThrowHandLibrary);
                 else
                 {
-                    cout << "攻击不成功" << endl;
+                    cout << "Unsuccessful attack" << endl;
                 }
             }
             else if (bchoose == '3')
@@ -279,7 +279,7 @@ void Game()
                 }
                 else
                 {
-                    cout << "攻击不成功" << endl;
+                    cout << "Unsuccessful attack" << endl;
                 }
             }
         }
@@ -309,12 +309,12 @@ void CallFollower(vector<Follower *> &Hand, vector<Follower *> &Battelefield, Ro
                 }
                 else
                 {
-                    cout << "请选择位置" << endl;
+                    cout << "Select a location" << endl;
                     int where;
                     cin >> where;
                     Battelefield.insert(Battelefield.begin() + where, (*v));
                 }
-                cout << "召唤成功" << endl;
+                cout << "Successful call" << endl;
                 // Statusl = Statusl - (*v)->GetFollowerStatus();
                 role.SetRoleStatusl(role.GetRoleStatusl() - (*v)->GetFollowCostcystal());
                 Hand.erase(v);
@@ -344,12 +344,12 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
     int fhealth, fattack;
     int vcount = 1;
     int fcount = 1;
-    cout << "敌方战场" << endl;
+    cout << "Enemy battlefield" << endl;
     ShowFollowerLibrary(beiBattlefield);
-    cout << "我方战场" << endl;
+    cout << "Our battlefield" << endl;
     ShowFollowerLibrary(zhuBattelefield);
     int i, j;
-    cout << "请选择要的随从（顺序）" << endl;
+    cout << "Select a location" << endl;
     cin >> i;
     vector<Follower *>::iterator v;
     vector<Follower *>::iterator f;
@@ -357,7 +357,7 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
     {
         if (i == vcount && (*v)->GetFollowerStatus() == 1)
         {
-            cout << "请选择要攻击的随从（顺序）" << endl;
+            cout << "Select a location(attack)" << endl;
             cin >> j;
             for (f = beiBattlefield.begin(); f != beiBattlefield.end(); f++)
             {
@@ -384,9 +384,9 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
                         beiThrowLibrary.push_back(*f);
                         beiBattlefield.erase(f);
                     }
-                     cout << "敌方战场" << endl;
+ cout << "Enemy battlefield" << endl;
     ShowFollowerLibrary(beiBattlefield);
-    cout << "我方战场" << endl;
+    cout << "Our battlefield" << endl;
     ShowFollowerLibrary(zhuBattelefield);
                     break;
                 }
@@ -404,10 +404,10 @@ void AttackFollower(vector<Follower *> &zhuBattelefield, vector<Follower *> &bei
 void AttackRole(vector<Follower *> &Battelefield, Role &role)
 {
     int count = 1;
-    cout << "我方战场" << endl;
+    cout << "our battlefield" << endl;
     ShowFollowerLibrary(Battelefield);
     int i;
-    cout << "请选择一个随从" << endl;
+    cout << "select a location" << endl;
     cin >> i;
     vector<Follower *>::iterator v;
     for (v = Battelefield.begin(); v != Battelefield.end(); v++)
@@ -457,7 +457,7 @@ bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer,
                 (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
             }
         }
-        cout << "比赛结束," << bPlayer.GetPlayerName() << "胜利" << endl;
+        cout << "gameover," << bPlayer.GetPlayerName() << "victory" << endl;
     	v = PlayerLibrary.begin();
 		
 		ofstream out("PlayerLibrary.txt");
@@ -482,7 +482,7 @@ bool judgeRoleHealth(Role &aRole, Role &bRole, Player &aPlayer, Player &bPlayer,
                 (*v)->SetPlayerVictory((*v)->GetPlayerVictory() + 1);
             }
         }
-        cout << "比赛结束," << aPlayer.GetPlayerName() << "胜利" << endl;
+        cout << "gameover," << aPlayer.GetPlayerName() << "victory" << endl;
    	v = PlayerLibrary.begin();
 		
 		ofstream out("PlayerLibrary.txt");

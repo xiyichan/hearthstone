@@ -7,11 +7,11 @@ int main()
 	{
 		do
 		{
-			cout << "1.随从列表" << endl;
-			cout << "2.玩家列表" << endl;
-			cout << "3.英雄列表" << endl;
-			cout << "4.玩家牌库" << endl;
-			cout << "5.开始比赛" << endl;
+			cout << "1.FollowerLibrary" << endl;
+			cout << "2.PlayerLibrary" << endl;
+			cout << "3.RoleLibrary" << endl;
+			cout << "4.CardLibrary" << endl;
+			cout << "5.Game" << endl;
 			cout << "choose:" << endl;
 			cin >> choose;
 			fflush(stdin);
