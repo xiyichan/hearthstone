@@ -1,6 +1,6 @@
 #include "All.h"
 using namespace std;
-
+/*开始比赛*/
 void Game()
 {
     bool GameOver = false;
